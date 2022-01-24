@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <style>
+      .mavi {
+        background-color: blue;
+      }
+      .kırmızı {
+        background-color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div :class="{mavi:ismavi ,kırmızı:iskırmızı}">{{message}}</div>
+
+      <button @click="change">change et babüş</button>
+      <hr />
+      <a v-bind:[at]="path">tıkla</a>
+      <hr />
+      {{number+1}} <br />
+      {{ message.split('').reverse().join('') }}
+
+      <hr />
+
+      <h1 v-if="awesome">Vue is awesome!</h1>
+      <h1 v-else>Oh no 😢</h1>
+    </div>
+
+    <script>
+      const App = {
+        data() {
+          return {
+            message: "hi",
+            ismavi: true,
+            iskırmızı: false,
+            at: "href",
+            path: "https://www.youtube.com/watch?v=ewkPt25siLQ",
+            number: 12,
+            awesome: false,
+          };
+        },
+
+        methods: {
+          change() {
+            if (this.ismavi) {
+              this.ismavi = false;
+              this.iskırmızı = true;
+            } else {
+              this.iskırmızı = false;
+              this.ismavi = true;
+            }
+          },
+        },
+      };
+
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
