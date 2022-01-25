@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="deneme">
+      <span v-if="hidden">{{message}}</span>
+      <hr />
+      <input v-model="message" />
+      <button v-on:click="tıkla">tıkla</button>
+      <hr />
+      <ol>
+        <li v-for="görev in görevler">{{görev.text}}</li>
+      </ol>
+    </div>
+  </body>
+
+  <script>
+    const Counter = {
+      data() {
+        return {
+          message: "bu varsayılan mesj",
+          hidden: true,
+          görevler: [
+            { text: "nodejs öğrenildi" },
+            { text: "express öğrenildi" },
+            { text: "vue öğreniyorum" },
+          ],
+        };
+      },
+      methods: {
+        tıkla() {
+          if (this.hidden) {
+            this.hidden = false;
+          } else {
+            this.hidden = true;
+          }
+        },
+      },
+    };
+
+    Vue.createApp(Counter).mount("#deneme");
+  </script>
+</html>
