@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- {{sayı}}
+      <button @click="artır">artır</button>
+      <hr />
+      <button @click="greet" value="as">alert için tıkla</button>
+      <button @click="say(name)">say hi!</button>
+      <hr />
+      <button @click="say(name),artır()">
+        ikili fonk yada ikili event çalıştırma
+      </button>
+      <hr />
+      <a @click.stop="say(name)">asd</a>
+      <hr />
+      <form action=""> -->
+      <!-- <input @keyup.enter="submit" /> -->
+      <!-- <input @keyup.alt.enter="clear()" v-model="name" />
+      </form> -->
+
+      <p>{{name}}</p>
+      <p>{{reversename}}</p>
+    </div>
+
+    <script>
+      const App = {
+        data() {
+          return {
+            sayı: 0,
+            name: "karaca",
+          };
+        },
+
+        computed: {
+          reversename() {
+            return this.name.split("").reverse().join("");
+          },
+        },
+
+        methods: {
+          greet(event) {
+            alert("hi " + this.name + "!");
+            if (event) {
+              alert(event.target.tagName);
+            }
+          },
+          say(param) {
+            alert(param);
+          },
+          artır() {
+            this.sayı += 1;
+          },
+
+          clear() {
+            this.name = "";
+          },
+        },
+      };
+
+      vm = Vue.createApp(App).mount("#app");
+
+      console.log(vm.$data.sayı);
+    </script>
+  </body>
+</html>
