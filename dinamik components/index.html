@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+      #app {
+        left: 30%;
+        position: relative;
+        background-color: burlywood;
+        width: 30%;
+      }
+      img {
+        border-radius: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>Caker info</p>
+      <hr />
+
+      <button v-for="tab in tabs" :key="tab" @click="currentTab = tab">
+        {{tab}}
+      </button>
+      <keep-alive>
+        <component :is="currentTabComponent"></component>
+      </keep-alive>
+    </div>
+
+    <script>
+      let CompA = {
+        template: `<h1 style="padding-left: 27%">Dark cake maker</h1>
+        
+        <img src="./as.png" alt="" width="100" style="padding-left: 40%;"  />
+        
+        `,
+      };
+      let CompB = {
+        template: `<h1> Comp B</h1>
+        <lable>ad</labele>
+            <input>
+            <input type="submit">
+            `,
+      };
+      let CompC = {
+        template: `<h1> Comp C</h1>
+            
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+        
+        `,
+      };
+
+      const App = {
+        data() {
+          return {
+            currentTab: "Home",
+            message: "hi",
+            tabs: ["Home", "Posts", "Archive"],
+          };
+        },
+        computed: {
+          currentTabComponent() {
+            return "tab-" + this.currentTab.toLowerCase();
+          },
+        },
+        components: {
+          "tab-home": CompA,
+          "tab-posts": CompB,
+          "tab-archive": CompC,
+        },
+      };
+
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>

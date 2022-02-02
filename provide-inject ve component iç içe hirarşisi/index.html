@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{message}}
+      <comp-c></comp-c>
+    </div>
+
+    <script>
+      let CompA = {
+        template: `<h1>CompA</h1>`,
+      };
+      let CompB = {
+        template: `<h1>CompB</h1>
+                        <comp-a/>    `,
+        components: { CompA },
+      };
+      let CompC = {
+        template: `<h1>CompC VE gelen data {{gelendata}}</h1>
+                    <comp-b/>
+            `,
+        components: { CompB },
+
+        inject: ["gelendata"],
+      };
+
+      const App = {
+        data() {
+          return {
+            message: "hi",
+          };
+        },
+        components: { CompC },
+        provide() {
+          return { gelendata: this.message };
+        },
+      };
+
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
