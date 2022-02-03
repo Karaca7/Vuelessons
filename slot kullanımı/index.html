@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <!-- <h1 name="baslık">
+        
+      </h1> -->
+    <div id="app">
+      {{message}}
+
+      <comp-a>
+        <template v-slot:slot1>
+          <h2>
+            Not:Ana ap içine template tagı açıp içine elementle eklenebilir
+            fakat eklenen elementler alt komponentte gözükmez bununn için alt
+            elementte "slot" tanımlanmalı
+          </h2>
+        </template>
+        <template v-slot:[tempss]>
+          <p>
+            Not:Component içinde bir den fazla element varsa busefer bunları
+            slotun name özelliği ile adlar belirleyip üst yapı içinde template
+            tagları içine bu elementleri alıp yazdıktan sonra template tagları
+            özelliğine v-slot:"alt elementteki slot adı"
+          </p>
+
+          <p>kısltma stone su "#name"</p>
+          <p>yada slotsları dinamik hale getirebilirim</p>
+        </template>
+      </comp-a>
+    </div>
+
+    <script>
+      let CompA = {
+        template: `
+                        <div>  
+                            
+                            <slot name="slot1"></slot>
+                               
+                            <label>yaz</label> 
+                               <input>
+                              
+                            </div>
+                            
+                            <slot  name="slot2"></slot>
+                          
+                   
+            `,
+      };
+
+      const App = {
+        data() {
+          return {
+            message: "hi",
+            tempss: "slot2",
+          };
+        },
+        components: {
+          CompA,
+        },
+      };
+
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
